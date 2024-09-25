@@ -73,7 +73,7 @@ class DataKaryawanHoViewmodel extends FutureViewModel {
     try {
       setBusy(true);
       final Map<String, dynamic> data = {
-        "EmployeeID": "HO.000${hasil}",
+        "EmployeeID": "HO.${hasil.toString().padLeft(3, '0')}",
         "Nama": "${namaKaryawan?.text}",
         "Jabatan": "${jabatanKaryawan?.text}",
         "Divisi": "${divisiKaryawan?.text}",
