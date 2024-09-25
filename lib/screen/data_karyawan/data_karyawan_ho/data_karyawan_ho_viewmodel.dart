@@ -69,11 +69,28 @@ class DataKaryawanHoViewmodel extends FutureViewModel {
     }
   }
 
+  clear() {
+    namaKaryawan?.text = '';
+    jabatanKaryawan?.text = '';
+    divisiKaryawan?.text = '';
+    nikKaryawan?.text = '';
+    npwpKaryawan?.text = '';
+    tglmulainnpwpKaryawan?.text = '';
+    jeniskelaminKaryawan?.text = '';
+    statusPernikahanKaryawan?.text = '';
+    statuswarganegaraKaryawan?.text = '';
+    alamatKaryawan?.text = '';
+    alamatemailresmiKaryawan?.text = '';
+    alamatemailresmi2Karyawan?.text = '';
+    golonganKaryawan?.text = '';
+    notifyListeners();
+  }
+
   postDataKaryawan() async {
     try {
       setBusy(true);
       final Map<String, dynamic> data = {
-        "EmployeeID": "HO.000${hasil}",
+        "EmployeeID": "HO.${hasil.toString().padLeft(3, '0')}",
         "Nama": "${namaKaryawan?.text}",
         "Jabatan": "${jabatanKaryawan?.text}",
         "Divisi": "${divisiKaryawan?.text}",
@@ -104,6 +121,7 @@ class DataKaryawanHoViewmodel extends FutureViewModel {
 
       if (response.statusCode == 201) {
         getDataKaryawan();
+        clear();
         Fluttertoast.showToast(
           msg: "Berhasil Upload",
           toastLength: Toast.LENGTH_SHORT,
