@@ -21,6 +21,7 @@ class DataKaryawanSortim extends StatefulWidget {
   State<DataKaryawanSortim> createState() => _DataKaryawanSortimState();
 }
 
+
 class _DataKaryawanSortimState extends State<DataKaryawanSortim> {
   List<dynamic> dataList = [];
   final ScrollController _scrollController = ScrollController();
@@ -110,6 +111,7 @@ class _DataKaryawanSortimState extends State<DataKaryawanSortim> {
 
   @override
   Widget build(BuildContext context) {
+    SDP.init(context);
     return ViewModelBuilder.reactive(
         viewModelBuilder: () => DataKaryawanSortimViewmodel(),
         builder: (context, vm, child) {
@@ -130,7 +132,7 @@ class _DataKaryawanSortimState extends State<DataKaryawanSortim> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
+                                const Padding(
                                   padding: const EdgeInsets.all(20),
                                   child: Text(
                                     "Form Karyawan Sortim",
@@ -395,6 +397,7 @@ class _DataKaryawanSortimState extends State<DataKaryawanSortim> {
                         ),
                       ),
               ));
+        
         });
   }
 }

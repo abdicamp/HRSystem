@@ -6,6 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:http/http.dart' as http;
 
 class DataKaryawanSortimViewmodel extends FutureViewModel {
+  
   TextEditingController? namaKaryawan = new TextEditingController();
   TextEditingController? jabatanKaryawan = new TextEditingController();
   TextEditingController? divisiKaryawan = new TextEditingController();
@@ -44,8 +45,8 @@ class DataKaryawanSortimViewmodel extends FutureViewModel {
   getDataKaryawan() async {
     try {
       setBusy(true);
-      final response = await http
-          .get(Uri.parse("${Networks.baseUrl}getDataKaryawan/Sortim"));
+      final response =
+          await http.get(Uri.parse("${Networks.baseUrl}getDataKaryawan/Sortim"));
 
       if (response.statusCode == 200) {
         final dataJson = jsonDecode(response.body);
@@ -69,11 +70,28 @@ class DataKaryawanSortimViewmodel extends FutureViewModel {
     }
   }
 
+  clear() {
+    namaKaryawan?.text = '';
+    jabatanKaryawan?.text = '';
+    divisiKaryawan?.text = '';
+    nikKaryawan?.text = '';
+    npwpKaryawan?.text = '';
+    tglmulainnpwpKaryawan?.text = '';
+    jeniskelaminKaryawan?.text = '';
+    statusPernikahanKaryawan?.text = '';
+    statuswarganegaraKaryawan?.text = '';
+    alamatKaryawan?.text = '';
+    alamatemailresmiKaryawan?.text = '';
+    alamatemailresmi2Karyawan?.text = '';
+    golonganKaryawan?.text = '';
+    notifyListeners();
+  }
+
   postDataKaryawan() async {
     try {
       setBusy(true);
       final Map<String, dynamic> data = {
-        "EmployeeID": "SORTIM.000${hasil}",
+        "EmployeeID": "SORTIM.${hasil.toString().padLeft(3, '0')}",
         "Nama": "${namaKaryawan?.text}",
         "Jabatan": "${jabatanKaryawan?.text}",
         "Divisi": "${divisiKaryawan?.text}",
@@ -90,6 +108,7 @@ class DataKaryawanSortimViewmodel extends FutureViewModel {
         "Golongan": "${golonganKaryawan?.text}",
         "Wilayah": "Sortim",
         "IsSuspend": "False",
+        
       };
       print("data : ${data}");
       final Map<String, String> headers = {
@@ -104,6 +123,7 @@ class DataKaryawanSortimViewmodel extends FutureViewModel {
 
       if (response.statusCode == 201) {
         getDataKaryawan();
+        clear();
         Fluttertoast.showToast(
           msg: "Berhasil Upload",
           toastLength: Toast.LENGTH_SHORT,

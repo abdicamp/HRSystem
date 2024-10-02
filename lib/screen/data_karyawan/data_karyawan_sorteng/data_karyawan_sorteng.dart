@@ -40,6 +40,7 @@ class _DataKaryawanSortengState extends State<DataKaryawanSorteng> {
 
   @override
   Widget build(BuildContext context) {
+    SDP.init(context);
     return ViewModelBuilder.reactive(
         viewModelBuilder: () => DataKaryawanSortengViewmodel(),
         builder: (context, vm, child) {
@@ -325,6 +326,7 @@ class _DataKaryawanSortengState extends State<DataKaryawanSorteng> {
                         ),
                       ),
               ));
+        
         });
   }
 }

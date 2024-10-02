@@ -6,6 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:http/http.dart' as http;
 
 class DataKaryawanSortengViewmodel extends FutureViewModel {
+
   TextEditingController? namaKaryawan = new TextEditingController();
   TextEditingController? jabatanKaryawan = new TextEditingController();
   TextEditingController? divisiKaryawan = new TextEditingController();
@@ -21,6 +22,8 @@ class DataKaryawanSortengViewmodel extends FutureViewModel {
   TextEditingController? alamatemailresmi2Karyawan =
       new TextEditingController();
   TextEditingController? golonganKaryawan = new TextEditingController();
+
+  List<dynamic>? listDataKaryawan = [];
   String? statusKaryawan;
   List<DropdownMenuItem<String>> get dropdownItems {
     return [
@@ -35,7 +38,6 @@ class DataKaryawanSortengViewmodel extends FutureViewModel {
     ];
   }
 
-  List<dynamic>? listDataKaryawan = [];
   int hasil = 0;
   bool? isUpdate = false;
   String? getemployeeID;
@@ -43,8 +45,8 @@ class DataKaryawanSortengViewmodel extends FutureViewModel {
   getDataKaryawan() async {
     try {
       setBusy(true);
-      final response = await http
-          .get(Uri.parse("${Networks.baseUrl}getDataKaryawan/Sorteng"));
+      final response =
+          await http.get(Uri.parse("${Networks.baseUrl}getDataKaryawan/Sorteng"));
 
       if (response.statusCode == 200) {
         final dataJson = jsonDecode(response.body);
@@ -68,11 +70,28 @@ class DataKaryawanSortengViewmodel extends FutureViewModel {
     }
   }
 
+  clear() {
+    namaKaryawan?.text = '';
+    jabatanKaryawan?.text = '';
+    divisiKaryawan?.text = '';
+    nikKaryawan?.text = '';
+    npwpKaryawan?.text = '';
+    tglmulainnpwpKaryawan?.text = '';
+    jeniskelaminKaryawan?.text = '';
+    statusPernikahanKaryawan?.text = '';
+    statuswarganegaraKaryawan?.text = '';
+    alamatKaryawan?.text = '';
+    alamatemailresmiKaryawan?.text = '';
+    alamatemailresmi2Karyawan?.text = '';
+    golonganKaryawan?.text = '';
+    notifyListeners();
+  }
+
   postDataKaryawan() async {
     try {
       setBusy(true);
       final Map<String, dynamic> data = {
-        "EmployeeID": "SORTENG.000${hasil}",
+        "EmployeeID": "SORTENG.${hasil.toString().padLeft(3, '0')}",
         "Nama": "${namaKaryawan?.text}",
         "Jabatan": "${jabatanKaryawan?.text}",
         "Divisi": "${divisiKaryawan?.text}",
@@ -103,6 +122,7 @@ class DataKaryawanSortengViewmodel extends FutureViewModel {
 
       if (response.statusCode == 201) {
         getDataKaryawan();
+        clear();
         Fluttertoast.showToast(
           msg: "Berhasil Upload",
           toastLength: Toast.LENGTH_SHORT,
@@ -191,7 +211,7 @@ class DataKaryawanSortengViewmodel extends FutureViewModel {
         "AlamatEmailResmi": "${alamatemailresmiKaryawan?.text}",
         "AlamatEmailResmi2": "${alamatemailresmi2Karyawan?.text}",
         "Golongan": "${golonganKaryawan?.text}",
-        "Wilayah": "SORTENG",
+        "Wilayah": "Sorteng",
         "IsSuspend": "False",
       };
       print("data : ${data}");

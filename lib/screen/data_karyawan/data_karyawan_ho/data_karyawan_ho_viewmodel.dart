@@ -6,6 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:http/http.dart' as http;
 
 class DataKaryawanHoViewmodel extends FutureViewModel {
+  
   TextEditingController? namaKaryawan = new TextEditingController();
   TextEditingController? jabatanKaryawan = new TextEditingController();
   TextEditingController? divisiKaryawan = new TextEditingController();
