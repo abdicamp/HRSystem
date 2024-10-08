@@ -39,6 +39,14 @@ class DataTableGajiHO extends DataTableSource {
         ),
         DataCell(
           Text(
+            '${item?['Nama'] ?? ''}',
+            style: blackRegularTextStyle.copyWith(
+              fontSize: 10,
+            ),
+          ),
+        ),
+        DataCell(
+          Text(
             formatRupiah.format(int.parse(item?['GajiPokok'] ?? 0)),
             style: blackRegularTextStyle.copyWith(
               fontSize: 10,

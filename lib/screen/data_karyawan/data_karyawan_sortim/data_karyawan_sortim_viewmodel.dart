@@ -43,6 +43,7 @@ class DataKaryawanSortimViewmodel extends FutureViewModel {
   String? getemployeeID;
 
   getDataKaryawan() async {
+    
     try {
       setBusy(true);
       final response =
@@ -108,7 +109,7 @@ class DataKaryawanSortimViewmodel extends FutureViewModel {
         "Golongan": "${golonganKaryawan?.text}",
         "Wilayah": "Sortim",
         "IsSuspend": "False",
-        
+
       };
       print("data : ${data}");
       final Map<String, String> headers = {

@@ -613,6 +613,17 @@ Widget dataTabel(List<dynamic>? source, DataGajiKaryawanHoViewmodel? vm) {
         DataColumn(
           label: Expanded(
             child: Text(
+              "Nama",
+              style: blackSemiBoldTextStyle.copyWith(
+                fontSize: 10,
+              ),
+            ),
+          ),
+          tooltip: "Nama",
+        ),
+        DataColumn(
+          label: Expanded(
+            child: Text(
               "Gaji Pokok",
               style: blackSemiBoldTextStyle.copyWith(
                 fontSize: 10,

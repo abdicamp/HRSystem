@@ -36,6 +36,13 @@ class DataTableReportHo extends DataTableSource {
           ),
         ),
         DataCell(
+          Text('${item?['Nama'] ?? ''}',
+            style: blackRegularTextStyle.copyWith(
+              fontSize: 10,
+            ),
+          ),
+        ),
+        DataCell(
           Text(
             item?['GajiPokok'] ?? '',
             style: blackRegularTextStyle.copyWith(
